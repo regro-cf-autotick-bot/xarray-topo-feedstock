@@ -1,21 +1,23 @@
+{% set name = "xarray-topo" %}
 {% set version = "0.0.11" %}
 
 package:
-  name: xarray-topo
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://gitext.gfz-potsdam.de/sec55-public/xarray-topo/repository/{{ version }}/archive.tar.gz
-  sha256: af555e0aa9beecd2bb8c8ec74e8673bb257e001993b89029aec760d2a7bde486
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/xarray-topo-{{ version }}.tar.gz
+  sha256: ecac7806a3238c85a91d80e71d53e649a261132e56cb004c01cd9bc859fed223
 
 build:
   number: 1001
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python {{ python_min }}
+    - setuptools
     - pip
   run:
     - python >={{ python_min }}
@@ -27,10 +29,13 @@ requirements:
 test:
   requires:
     - python {{ python_min }}
+    - pip
   imports:
     - xtopo
     - xtopo.models
     - xtopo.algos
+  commands:
+    - pip check
 
 about:
   home: https://gitext.gfz-potsdam.de/sec55-public/xarray-topo
