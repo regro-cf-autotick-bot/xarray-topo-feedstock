@@ -40,7 +40,7 @@ test:
 about:
   home: https://gitext.gfz-potsdam.de/sec55-public/xarray-topo
   license: BSD-3-Clause
-  license_file: LICENSE
+  license_file: LICENSE.txt
   summary: 'xarray extension for for topographic analysis and modeling'
 
 extra:
